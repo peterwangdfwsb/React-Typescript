@@ -9,7 +9,11 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>{data}</h1>
+      <ul>
+        {data.map((ele: string, key: number) => (
+          <li key={key}>{ele.id}</li>
+        ))}
+      </ul>
       <button onClick={() => dispatch(changedata())}>Change</button>
       <button onClick={() => dispatch(fetchdatatest())}>Thunk</button>
     </div>

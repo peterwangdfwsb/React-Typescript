@@ -1,13 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppThunk } from "../../store";
-import { RootState } from "../../store";
 
 export interface DataState {
   value: any;
 }
 
 const initialState: DataState = {
-  value: "abc"
+  value: [{ id: "peter" }, { id: "karina" }]
 };
 
 export const fetchdataSlice = createSlice({
@@ -15,7 +14,7 @@ export const fetchdataSlice = createSlice({
   initialState,
   reducers: {
     changedata: (state) => {
-      state.value = "def";
+      state.value = [{ id: "tiger" }];
     },
     fetchdatasuccess: (state, { payload }: PayloadAction) => {
       state.value = payload;
@@ -24,9 +23,9 @@ export const fetchdataSlice = createSlice({
 });
 
 export const fetchdatatest = (): AppThunk => async (dispatch) => {
-  fetch("https://api.github.com/users?per_page=100", { method: "GET" })
+  fetch("https://api.github.com/users?per_page=1", { method: "GET" })
     .then((res) => res.json())
-    .then((data) => dispatch(fetchdatasuccess("ghi")));
+    .then((data) => dispatch(fetchdatasuccess(data)));
 };
 
 // Action creators are generated for each case reducer function
